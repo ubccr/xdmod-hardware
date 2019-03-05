@@ -37,6 +37,3 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %{_libdir}/xdmod/
 %{_sysconfdir}/xdmod/etl/
-
-%changelog
-See https://github.com/ubccr/xdmod-hardware

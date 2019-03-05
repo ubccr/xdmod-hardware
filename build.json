@@ -16,7 +16,7 @@
     },
     "file_maps": {
         "lib": [
-            "background_scripts/"
+            "scripts/"
         ],
         "etc": {
             "configuration/etl": ""
