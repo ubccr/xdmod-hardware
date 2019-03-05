@@ -1,0 +1,59 @@
+{
+    "module": "hardware",
+    "defaults": {
+        "global": {
+            "namespace": "ETL\\Ingestor",
+            "truncate_destination": false,
+            "class": "DatabaseIngestor",
+            "options_class": "IngestorOptions",
+            "endpoints": {
+                "destination": {
+                    "type": "mysql",
+                    "name": "datawarehouse",
+                    "config": "datawarehouse",
+                    "schema": "mod_hardware",
+                    "create_schema_if_not_exists": true
+                }
+            }
+        },
+        "ingest": {
+            "endpoints": {
+                "source": {
+                    "type": "mysql",
+                    "name": "datawarehouse",
+                    "config": "datawarehouse",
+                    "schema": "mod_hardware"
+                }
+            }
+        }
+    },
+    "ingest": [{
+        "name": "staging",
+        "description": "Stage the hardware specification data for each compute node",
+        "class": "StructuredFileIngestor",
+        "definition_file": "hardware/staging.json",
+        "truncate_destination": true,
+        "endpoints": {
+            "source": {
+                "type": "jsonfile",
+                "name": "Resources configuration",
+                "path": "hardware/node_info.json"
+            }
+        }
+    }, {
+        "name": "dimensions",
+        "description": "Populate the various dimension tables",
+        "definition_file": "hardware/dimensions.json",
+        "hide_sql_warning_codes": [
+            1062
+        ]
+    }, {
+        "name": "nodes",
+        "description": "Populate the node table",
+        "definition_file": "hardware/nodes.json"
+    }, {
+        "name": "hosts",
+        "description": "Populate the hosts table",
+        "definition_file": "hardware/hosts.json"
+    }]
+}

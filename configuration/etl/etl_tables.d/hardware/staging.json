@@ -1,0 +1,70 @@
+{
+    "table_definition": {
+        "name": "staging",
+        "engine": "InnoDB",
+        "charset": "utf8",
+        "collation": "utf8_unicode_ci",
+        "columns": [
+            {
+                "name": "hostname",
+                "type": "varchar(32)",
+                "nullable": false
+            },
+            {
+                "name": "manufacturer",
+                "type": "char(16)",
+                "nullable": false
+            },
+            {
+                "name": "codename",
+                "type": "char(64)",
+                "nullable": false
+            },
+            {
+                "name": "model_name",
+                "type": "char(64)",
+                "nullable": false
+            },
+            {
+                "name": "clock_speed",
+                "type": "decimal(5,2)",
+                "nullable": false
+            },
+            {
+                "name": "core_count",
+                "type": "int(11)",
+                "nullable": false
+            },
+            {
+                "name": "board_manufacturer",
+                "type": "char(64)",
+                "nullable": false
+            },
+            {
+                "name": "board_name",
+                "type": "char(64)",
+                "nullable": false
+            },
+            {
+                "name": "board_version",
+                "type": "char(64)",
+                "nullable": false
+            },
+            {
+                "name": "system_manufacturer",
+                "type": "char(64)",
+                "nullable": false
+            },
+            {
+                "name": "system_name",
+                "type": "char(64)",
+                "nullable": false
+            },
+            {
+                "name": "system_version",
+                "type": "char(64)",
+                "nullable": false
+            }
+        ]
+    }
+}

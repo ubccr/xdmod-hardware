@@ -1,0 +1,50 @@
+{
+    "table_definition": [{
+        "$ref": "${table_definition_dir}/hardware/cpu_types.json#/table_definition"
+    }, {
+        "$ref": "${table_definition_dir}/hardware/board_types.json#/table_definition"
+    }, {
+        "$ref": "${table_definition_dir}/hardware/system_types.json#/table_definition"
+    }],
+    "source_query": {
+        "records": {
+            "manufacturer": "s.manufacturer",
+            "codename": "s.codename",
+            "model_name": "s.model_name",
+            "clock_speed": "s.clock_speed",
+            "core_count": "s.core_count",
+            "system_manufacturer": "s.system_manufacturer",
+            "system_name": "s.system_name",
+            "system_version": "s.system_version",
+            "board_manufacturer": "s.board_manufacturer",
+            "board_name": "s.board_name",
+            "board_version": "s.board_version"
+        },
+        "joins": [
+            {
+                "name": "staging",
+                "schema": "${SOURCE_SCHEMA}",
+                "alias": "s"
+            }
+        ]
+    },
+    "destination_record_map": {
+        "cpu_types": {
+            "manufacturer": "manufacturer",
+            "codename": "codename",
+            "model_name": "model_name",
+            "clock_speed": "clock_speed",
+            "core_count": "core_count"
+        },
+        "system_types": {
+            "manufacturer": "system_manufacturer",
+            "name": "system_name",
+            "version": "system_version"
+        },
+        "board_types": {
+            "manufacturer": "board_manufacturer",
+            "name": "board_name",
+            "version": "board_version"
+        }
+    }
+}

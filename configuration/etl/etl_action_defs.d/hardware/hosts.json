@@ -1,0 +1,52 @@
+{
+    "table_definition": [{
+        "$ref": "${table_definition_dir}/hardware/host.json#/table_definition"
+    }],
+    "source_query": {
+        "records": {
+            "host_id": "h.id",
+            "node_id": "n.id",
+            "start_time": "\"2000-01-01T00:00\"",
+            "end_time": "\"2028-01-01T00:00\"",
+            "start_day_id": 200000001,
+            "end_day_id": 203800017
+        },
+        "joins": [
+            {
+                "name": "staging",
+                "schema": "${SOURCE_SCHEMA}",
+                "alias": "s"
+            },
+            {
+                "name": "cpu_types",
+                "schema": "${SOURCE_SCHEMA}",
+                "alias": "ct",
+                "on": "s.manufacturer = ct.manufacturer AND s.model_name = ct.model_name AND s.clock_speed = ct.clock_speed AND s.core_count = ct.core_count"
+            },
+            {
+                "name": "board_types",
+                "schema": "${SOURCE_SCHEMA}",
+                "alias": "bt",
+                "on": "s.board_manufacturer = bt.manufacturer AND s.board_name = bt.name AND s.board_version = bt.version"
+            },
+            {
+                "name": "system_types",
+                "schema": "${SOURCE_SCHEMA}",
+                "alias": "st",
+                "on": "s.system_manufacturer = st.manufacturer AND s.system_name = st.name AND s.system_version = st.version"
+            },
+            {
+                "name": "node",
+                "schema": "${SOURCE_SCHEMA}",
+                "alias": "n",
+                "on": "ct.id = n.cpu_id AND bt.id = n.board_id AND st.id = n.system_id"
+            },
+            {
+                "name": "hosts",
+                "schema": "modw",
+                "alias": "h",
+                "on": "s.hostname = h.hostname"
+            }
+        ]
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "name": "xdmod-hardware",
+    "version": "8.1.0",
+    "release": "1.0",
+    "files": {
+        "include_paths": [
+        ],
+        "include_patterns": [
+        ],
+        "exclude_paths": [
+            "docs"
+        ],
+        "exclude_patterns": [
+            "#/\\.#"
+        ]
+    },
+    "file_maps": {
+        "lib": [
+            "background_scripts/"
+        ],
+        "etc": {
+            "configuration/etl": ""
+        }
+    }
+}

@@ -1,0 +1,83 @@
+{
+    "table_definition": {
+        "name": "host",
+        "engine": "InnoDB",
+        "charset": "utf8",
+        "collation": "utf8_unicode_ci",
+        "columns": [
+            {
+                "name": "host_id",
+                "type": "int(11)",
+                "nullable": false
+            },
+            {
+                "name": "node_id",
+                "type": "int(11)",
+                "nullable": false
+            },
+            {
+                "name": "start_day_id",
+                "type": "int(11)",
+                "nullable": false
+            },
+            {
+                "name": "end_day_id",
+                "type": "int(11)",
+                "nullable": false
+            },
+            {
+                "name": "start_time",
+                "type": "datetime",
+                "nullable": false
+            },
+            {
+                "name": "end_time",
+                "type": "datetime",
+                "nullable": false
+            }
+        ],
+        "indexes": [
+            {
+                "name": "PRIMARY",
+                "columns": [
+                    "host_id",
+                    "node_id",
+                    "start_day_id",
+                    "end_day_id"
+                ],
+                "type": "BTREE",
+                "is_unique": true
+            },
+            {
+                "name": "idx_node_id",
+                "columns": [
+                    "node_id"
+                ],
+                "type": "BTREE",
+                "is_unique": false
+            },
+            {
+                "name": "idx_time",
+                "columns": [
+                    "host_id",
+                    "start_day_id",
+                    "end_day_id"
+                ],
+                "type": "BTREE",
+                "is_unique": true
+            }
+        ],
+        "foreign_key_constraints": [
+            {
+                "name": "fk_node_id",
+                "columns": [
+                    "node_id"
+                ],
+                "referenced_table": "node",
+                "referenced_columns": [
+                    "id"
+                ]
+            }
+        ]
+    }
+}

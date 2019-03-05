@@ -1,0 +1,114 @@
+{
+    "table_definition": {
+        "name": "node",
+        "engine": "InnoDB",
+        "charset": "utf8",
+        "collation": "utf8_unicode_ci",
+        "columns": [
+            {
+                "name": "id",
+                "type": "int(11)",
+                "extra": "auto_increment",
+                "nullable": false
+            },
+            {
+                "name": "board_id",
+                "type": "int(11)",
+                "nullable": false
+            },
+            {
+                "name": "system_id",
+                "type": "int(11)",
+                "nullable": false
+            },
+            {
+                "name": "cpu_id",
+                "type": "int(11)",
+                "nullable": false
+            },
+            {
+                "name": "cpu_socket_count",
+                "type": "int(11) unsigned",
+                "nullable": false,
+                "comment": "The number of populated CPU sockets"
+            }
+        ],
+        "indexes": [
+            {
+                "name": "PRIMARY",
+                "columns": [
+                    "id"
+                ],
+                "type": "BTREE",
+                "is_unique": true
+            },
+            {
+                "name": "unique",
+                "columns": [
+                    "board_id",
+                    "system_id",
+                    "cpu_id",
+                    "cpu_socket_count"
+                ],
+                "type": "BTREE",
+                "is_unique": true
+            },
+            {
+                "name": "idx_board_id",
+                "columns": [
+                    "board_id"
+                ],
+                "type": "BTREE",
+                "is_unique": false
+            },
+            {
+                "name": "idx_system_id",
+                "columns": [
+                    "system_id"
+                ],
+                "type": "BTREE",
+                "is_unique": false
+            },
+            {
+                "name": "idx_cpu_id",
+                "columns": [
+                    "cpu_id"
+                ],
+                "type": "BTREE",
+                "is_unique": false
+            }
+        ],
+        "foreign_key_constraints": [
+            {
+                "name": "fk_board_id",
+                "columns": [
+                    "board_id"
+                ],
+                "referenced_table": "board_types",
+                "referenced_columns": [
+                    "id"
+                ]
+            },
+            { 
+                "name": "fk_system_id",
+                "columns": [
+                    "system_id"
+                ],
+                "referenced_table": "system_types",
+                "referenced_columns": [
+                    "id"
+                ]
+            },
+            {
+                "name": "fk_cpu_id",
+                "columns": [
+                    "cpu_id"
+                ],
+                "referenced_table": "cpu_types",
+                "referenced_columns": [
+                    "id"
+                ]
+            }
+        ]
+    }
+}
