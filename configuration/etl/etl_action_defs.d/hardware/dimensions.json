@@ -4,6 +4,8 @@
     }, {
         "$ref": "${table_definition_dir}/hardware/board_types.json#/table_definition"
     }, {
+        "$ref": "${table_definition_dir}/hardware/infiniband_types.json#/table_definition"
+    }, {
         "$ref": "${table_definition_dir}/hardware/system_types.json#/table_definition"
     }],
     "source_query": {
@@ -12,13 +14,17 @@
             "codename": "s.codename",
             "model_name": "s.model_name",
             "clock_speed": "s.clock_speed",
+            "cores_per_processor": -1,
             "core_count": "s.core_count",
             "system_manufacturer": "s.system_manufacturer",
             "system_name": "s.system_name",
             "system_version": "s.system_version",
             "board_manufacturer": "s.board_manufacturer",
             "board_name": "s.board_name",
-            "board_version": "s.board_version"
+            "board_version": "s.board_version",
+            "ib_device": "s.ib_device",
+            "ib_ca_type": "s.ib_ca_type",
+            "ib_ports": "s.ib_ports"
         },
         "joins": [
             {
@@ -34,7 +40,7 @@
             "codename": "codename",
             "model_name": "model_name",
             "clock_speed": "clock_speed",
-            "core_count": "core_count"
+            "core_count": "cores_per_processor"
         },
         "system_types": {
             "manufacturer": "system_manufacturer",
@@ -45,6 +51,11 @@
             "manufacturer": "board_manufacturer",
             "name": "board_name",
             "version": "board_version"
+        },
+        "infiniband_types": {
+            "device_name": "ib_device",
+            "ca_type": "ib_ca_type",
+            "port_count": "ib_ports"
         }
     }
 }

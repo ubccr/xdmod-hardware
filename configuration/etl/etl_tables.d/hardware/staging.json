@@ -64,6 +64,36 @@
                 "name": "system_version",
                 "type": "char(64)",
                 "nullable": false
+            },
+            {
+                "name": "physmem",
+                "type": "int(11)",
+                "nullable": false
+            },
+            {
+                "name": "disk_count",
+                "type": "int(11)",
+                "nullable": false
+            },
+            {
+                "name": "ib_device_count",
+                "type": "int(11)",
+                "nullable": false
+            },
+            {
+                "name": "ib_device",
+                "type": "char(64)",
+                "nullable": false
+            },
+            {
+                "name": "ib_ca_type",
+                "type": "char(64)",
+                "nullable": false
+            },
+            {
+                "name": "ib_ports",
+                "type": "int(11)",
+                "nullable": false
             }
         ]
     }

@@ -7,7 +7,9 @@
             "board_id": "bt.id",
             "system_id": "st.id",
             "cpu_id": "ct.id",
-            "cpu_socket_count": 0
+            "core_count": "s.core_count",
+            "memory_gb": "CEILING(s.physmem / 1024.0)",
+            "ib_hw_id": "ib.id"
         },
         "joins": [
             {
@@ -19,7 +21,7 @@
                 "name": "cpu_types",
                 "schema": "${SOURCE_SCHEMA}",
                 "alias": "ct",
-                "on": "s.manufacturer = ct.manufacturer AND s.model_name = ct.model_name AND s.clock_speed = ct.clock_speed AND s.core_count = ct.core_count"
+                "on": "s.manufacturer = ct.manufacturer AND s.model_name = ct.model_name AND s.clock_speed = ct.clock_speed AND ct.core_count = -1"
             },
             {
                 "name": "board_types",
@@ -32,6 +34,12 @@
                 "schema": "${SOURCE_SCHEMA}",
                 "alias": "st",
                 "on": "s.system_manufacturer = st.manufacturer AND s.system_name = st.name AND s.system_version = st.version"
+            },
+            {
+                "name": "infiniband_types",
+                "schema": "${SOURCE_SCHEMA}",
+                "alias": "ib",
+                "on": "s.ib_device = ib.device_name AND s.ib_ca_type = ib.ca_type AND s.ib_ports = ib.port_count"
             }
         ]
     }

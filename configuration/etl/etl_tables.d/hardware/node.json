@@ -27,10 +27,21 @@
                 "nullable": false
             },
             {
-                "name": "cpu_socket_count",
-                "type": "int(11) unsigned",
+                "name": "core_count",
+                "type": "int(11)",
                 "nullable": false,
-                "comment": "The number of populated CPU sockets"
+                "comment": "The number of CPU hardware cores"
+            },
+            {
+                "name": "memory_gb",
+                "type": "int(11)",
+                "nullable": false,
+                "comment": "The amount of physical memory on the node in GiB"
+            },
+            {
+                "name": "ib_hw_id",
+                "type": "int(11)",
+                "nullable": false
             }
         ],
         "indexes": [
@@ -48,7 +59,9 @@
                     "board_id",
                     "system_id",
                     "cpu_id",
-                    "cpu_socket_count"
+                    "core_count",
+                    "memory_gb",
+                    "ib_hw_id"
                 ],
                 "type": "BTREE",
                 "is_unique": true
@@ -76,6 +89,14 @@
                 ],
                 "type": "BTREE",
                 "is_unique": false
+            },
+            {
+                "name": "idx_ib_hw_id",
+                "columns": [
+                    "ib_hw_id"
+                ],
+                "type": "BTREE",
+                "is_unique": false
             }
         ],
         "foreign_key_constraints": [
@@ -89,12 +110,22 @@
                     "id"
                 ]
             },
-            { 
+            {
                 "name": "fk_system_id",
                 "columns": [
                     "system_id"
                 ],
                 "referenced_table": "system_types",
+                "referenced_columns": [
+                    "id"
+                ]
+            },
+            {
+                "name": "fk_ib_hw_id",
+                "columns": [
+                    "ib_hw_id"
+                ],
+                "referenced_table": "infiniband_types",
                 "referenced_columns": [
                     "id"
                 ]
