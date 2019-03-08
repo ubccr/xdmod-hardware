@@ -6,6 +6,8 @@
     }, {
         "$ref": "${table_definition_dir}/hardware/infiniband_types.json#/table_definition"
     }, {
+        "$ref": "${table_definition_dir}/hardware/gpu_types.json#/table_definition"
+    }, {
         "$ref": "${table_definition_dir}/hardware/system_types.json#/table_definition"
     }],
     "source_query": {
@@ -24,7 +26,9 @@
             "board_version": "s.board_version",
             "ib_device": "s.ib_device",
             "ib_ca_type": "s.ib_ca_type",
-            "ib_ports": "s.ib_ports"
+            "ib_ports": "s.ib_ports",
+            "gpu_manufacturer": "s.gpu_device_manufacturer",
+            "gpu_name": "s.gpu_device_name"
         },
         "joins": [
             {
@@ -56,6 +60,10 @@
             "device_name": "ib_device",
             "ca_type": "ib_ca_type",
             "port_count": "ib_ports"
+        },
+        "gpu_types": {
+            "manufacturer": "gpu_manufacturer",
+            "name": "gpu_name"
         }
     }
 }

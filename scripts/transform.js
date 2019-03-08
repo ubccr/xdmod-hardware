@@ -22,7 +22,10 @@ var result = [
         'ib_device_count',
         'ib_device',
         'ib_ca_type',
-        'ib_ports'
+        'ib_ports',
+        'gpu_device_count',
+        'gpu_device_manufacturer',
+        'gpu_device_name'
     ]
 ];
 
@@ -48,9 +51,20 @@ for (let i = 0; i < dmi_info.length; i++) {
     }
 }
 
+var sorter = function (a, b) {
+    var hostorder = a.hostname.localeCompare(b.hostname);
+    if (hostorder === 0) {
+        return a.time - b.time;
+    }
+    return hostorder;
+};
+
+hardware_info.sort(sorter);
+
 for (let i = 0; i < hardware_info.length; i++) {
     hostname = hardware_info[i].hostname.split('.')[0];
 
+    let hw_info = hardware_info[i];
     let info = node_mapping[hostname];
 
     if (!info) {
@@ -69,6 +83,17 @@ for (let i = 0; i < hardware_info.length; i++) {
             info.ib_device = device;
             info.ib_ca_type = hardware_info[i].infiniband[device][1];
             info.ib_ports = hardware_info[i].infiniband[device][2];
+        }
+    }
+
+    if (hw_info.gpu && hw_info.gpu.gpu0) {
+        let devices = Object.getOwnPropertyNames(hw_info.gpu);
+        info.gpu_device_count = devices.length;
+        info.gpu_device_manufacturer = 'Nvidia';
+        info.gpu_device_name = hw_info.gpu.gpu0;
+    } else {
+        if (!info.hasOwnProperty('gpu_device_count')) {
+            info.gpu_device_count = 0;
         }
     }
 }
@@ -113,8 +138,15 @@ for (hostname in node_mapping) {
             get(info.ib_device),
             get(info.ib_ca_type),
             get(info.ib_ports, 'int'),
+            info.gpu_device_count,
+            get(info.gpu_device_manufacturer),
+            get(info.gpu_device_name)
         ]);
     }
 }
 
-process.stdout.write(JSON.stringify(result, null, 4));
+var output = [];
+for (let i = 0; i < result.length; i++) {
+    output.push(JSON.stringify(result[i], null, 1).replace(/\n/g, ''));
+}
+process.stdout.write('[' + output.join(',\n') + ']\n');

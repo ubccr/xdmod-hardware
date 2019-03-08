@@ -9,7 +9,10 @@
             "cpu_id": "ct.id",
             "core_count": "s.core_count",
             "memory_gb": "CEILING(s.physmem / 1024.0)",
-            "ib_hw_id": "ib.id"
+            "infiniband_device_count": "s.ib_device_count",
+            "ib_hw_id": "ib.id",
+            "gpu_device_count": "s.gpu_device_count",
+            "gpu_device_id": "gpu.id"
         },
         "joins": [
             {
@@ -40,6 +43,12 @@
                 "schema": "${SOURCE_SCHEMA}",
                 "alias": "ib",
                 "on": "s.ib_device = ib.device_name AND s.ib_ca_type = ib.ca_type AND s.ib_ports = ib.port_count"
+            },
+            {
+                "name": "gpu_types",
+                "schema": "${SOURCE_SCHEMA}",
+                "alias": "gpu",
+                "on": "s.gpu_device_manufacturer = gpu.manufacturer AND s.gpu_device_name = gpu.name"
             }
         ]
     }

@@ -39,7 +39,24 @@
                 "comment": "The amount of physical memory on the node in GiB"
             },
             {
+                "name": "infiniband_device_count",
+                "type": "int(11)",
+                "nullable": false,
+                "comment": "The number of InfiniBand cards present"
+            },
+            {
                 "name": "ib_hw_id",
+                "type": "int(11)",
+                "nullable": false
+            },
+            {
+                "name": "gpu_device_count",
+                "type": "int(11)",
+                "nullable": false,
+                "comment": "The number of GPU cards present"
+            },
+            {
+                "name": "gpu_device_id",
                 "type": "int(11)",
                 "nullable": false
             }
@@ -61,7 +78,10 @@
                     "cpu_id",
                     "core_count",
                     "memory_gb",
-                    "ib_hw_id"
+                    "infiniband_device_count",
+                    "ib_hw_id",
+                    "gpu_device_count",
+                    "gpu_device_id"
                 ],
                 "type": "BTREE",
                 "is_unique": true
@@ -86,6 +106,14 @@
                 "name": "idx_cpu_id",
                 "columns": [
                     "cpu_id"
+                ],
+                "type": "BTREE",
+                "is_unique": false
+            },
+            {
+                "name": "idx_gpu_id",
+                "columns": [
+                    "gpu_device_id"
                 ],
                 "type": "BTREE",
                 "is_unique": false
@@ -116,6 +144,16 @@
                     "system_id"
                 ],
                 "referenced_table": "system_types",
+                "referenced_columns": [
+                    "id"
+                ]
+            },
+            {
+                "name": "fk_gpu_device_id",
+                "columns": [
+                    "gpu_device_id"
+                ],
+                "referenced_table": "gpu_types",
                 "referenced_columns": [
                     "id"
                 ]
