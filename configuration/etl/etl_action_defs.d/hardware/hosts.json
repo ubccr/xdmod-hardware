@@ -51,7 +51,7 @@
                 "name": "node",
                 "schema": "${SOURCE_SCHEMA}",
                 "alias": "n",
-                "on": "ct.id = n.cpu_id AND bt.id = n.board_id AND st.id = n.system_id AND n.infiniband_device_count = s.ib_device_count AND ib.id = n.ib_hw_id AND s.gpu_device_count = n.gpu_device_count AND n.gpu_device_id = gpu.id AND n.core_count = s.core_count AND n.memory_gb = CEILING(s.physmem / 1024.0)"
+                "on": "ct.id = n.cpu_id AND bt.id = n.board_id AND st.id = n.system_id AND n.infiniband_device_count = s.ib_device_count AND ib.id = n.infiniband_id AND s.gpu_device_count = n.gpu_device_count AND n.gpu_device_id = gpu.id AND n.core_count = s.core_count AND n.memory_gb = CEILING(s.physmem / 1024.0)"
             },
             {
                 "name": "hosts",

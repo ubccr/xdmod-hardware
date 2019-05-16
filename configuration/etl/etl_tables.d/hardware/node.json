@@ -45,7 +45,7 @@
                 "comment": "The number of InfiniBand cards present"
             },
             {
-                "name": "ib_hw_id",
+                "name": "infiniband_id",
                 "type": "int(11)",
                 "nullable": false
             },
@@ -79,7 +79,7 @@
                     "core_count",
                     "memory_gb",
                     "infiniband_device_count",
-                    "ib_hw_id",
+                    "infiniband_id",
                     "gpu_device_count",
                     "gpu_device_id"
                 ],
@@ -119,9 +119,9 @@
                 "is_unique": false
             },
             {
-                "name": "idx_ib_hw_id",
+                "name": "idx_infiniband_id",
                 "columns": [
-                    "ib_hw_id"
+                    "infiniband_id"
                 ],
                 "type": "BTREE",
                 "is_unique": false
@@ -159,9 +159,9 @@
                 ]
             },
             {
-                "name": "fk_ib_hw_id",
+                "name": "fk_infiniband_id",
                 "columns": [
-                    "ib_hw_id"
+                    "infiniband_id"
                 ],
                 "referenced_table": "infiniband_types",
                 "referenced_columns": [
