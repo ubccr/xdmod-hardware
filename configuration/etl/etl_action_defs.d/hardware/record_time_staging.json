@@ -1,0 +1,61 @@
+{
+    "table_definition": [{
+        "$ref": "${table_definition_dir}/hardware/record_time_staging.json#/table_definition"
+    }],
+    "source_query": {
+        "records": {
+            "host_id": "h.id",
+            "node_id": "n.id",
+            "record_time": "s.record_time"
+        },
+        "joins": [
+            {
+                "name": "staging",
+                "schema": "${SOURCE_SCHEMA}",
+                "alias": "s"
+            },
+            {
+                "name": "cpu_types",
+                "schema": "${SOURCE_SCHEMA}",
+                "alias": "ct",
+                "on": "s.manufacturer = ct.manufacturer AND s.model_name = ct.model_name AND s.clock_speed = ct.clock_speed AND ct.core_count = -1"
+            },
+            {
+                "name": "board_types",
+                "schema": "${SOURCE_SCHEMA}",
+                "alias": "bt",
+                "on": "s.board_manufacturer = bt.manufacturer AND s.board_name = bt.name AND s.board_version = bt.version"
+            },
+            {
+                "name": "system_types",
+                "schema": "${SOURCE_SCHEMA}",
+                "alias": "st",
+                "on": "s.system_manufacturer = st.manufacturer AND s.system_name = st.name AND s.system_version = st.version"
+            },
+            {
+                "name": "infiniband_types",
+                "schema": "${SOURCE_SCHEMA}",
+                "alias": "ib",
+                "on": "s.ib_device = ib.device_name AND s.ib_ca_type = ib.ca_type AND s.ib_ports = ib.port_count"
+            },
+            {
+                "name": "gpu_types",
+                "schema": "${SOURCE_SCHEMA}",
+                "alias": "gpu",
+                "on": "s.gpu_device_manufacturer = gpu.manufacturer AND s.gpu_device_name = gpu.name"
+            },
+            {
+                "name": "node",
+                "schema": "${SOURCE_SCHEMA}",
+                "alias": "n",
+                "on": "ct.id = n.cpu_id AND bt.id = n.board_id AND st.id = n.system_id AND n.infiniband_device_count = s.ib_device_count AND ib.id = n.infiniband_id AND s.gpu_device_count = n.gpu_device_count AND n.gpu_device_id = gpu.id AND n.core_count = s.core_count AND n.memory_gb = CEILING(s.physmem / 1024.0)"
+            },
+            {
+                "name": "hosts",
+                "schema": "modw",
+                "alias": "h",
+                "on": "s.hostname = h.hostname"
+            }
+        ]
+    }
+}

@@ -52,7 +52,12 @@
         "description": "Populate the node table",
         "definition_file": "hardware/nodes.json"
     }, {
+        "name": "record_time_staging",
+        "description": "Populate the record_time_staging table",
+        "definition_file": "hardware/record_time_staging.json"
+    }, {
         "name": "hosts",
+        "class": "HostTableTransformIngestor",
         "description": "Populate the hosts table",
         "definition_file": "hardware/hosts.json"
     }]

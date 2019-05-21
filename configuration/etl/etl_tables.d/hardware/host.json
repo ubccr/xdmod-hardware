@@ -60,8 +60,8 @@
                 "name": "idx_time",
                 "columns": [
                     "host_id",
-                    "start_day_id",
-                    "end_day_id"
+                    "node_id",
+                    "start_day_id"
                 ],
                 "type": "BTREE",
                 "is_unique": true
