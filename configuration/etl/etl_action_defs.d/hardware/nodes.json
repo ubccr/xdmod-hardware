@@ -10,7 +10,7 @@
             "core_count": "s.core_count",
             "memory_gb": "CEILING(s.physmem / 1024.0)",
             "infiniband_device_count": "s.ib_device_count",
-            "ib_hw_id": "ib.id",
+            "infiniband_id": "ib.id",
             "gpu_device_count": "s.gpu_device_count",
             "gpu_device_id": "gpu.id"
         },
