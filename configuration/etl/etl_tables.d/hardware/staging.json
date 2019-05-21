@@ -109,6 +109,11 @@
                 "name": "gpu_device_name",
                 "type": "char(64)",
                 "nullable": false
+            },
+            {
+                "name": "record_time",
+                "type": "float(32)",
+                "nullable": false
             }
         ]
     }
