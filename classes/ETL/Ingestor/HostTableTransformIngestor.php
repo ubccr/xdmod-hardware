@@ -1,4 +1,14 @@
 <?php
+/**
+* This class iterates over a staging table (record_time_staging) in which each row pairs a 
+* host with a hardware configuration at a specific time (record_time). 
+* The transformation will associate each host with a specific hardware configuration
+* over a *range* of times (start_time and end_time)
+* 
+* @author Max Dudek <maxdudek@gmail.com>
+* @date 2019-05-20
+*/
+
 
 namespace ETL\Ingestor;
 
@@ -13,8 +23,11 @@ use Log;
 class HostTableTransformIngestor extends pdoIngestor implements iAction
 {
 
+    /**
+     * @var $_instance_state an array representing a row to be added to the host table - 
+     * it associates a host with a hardware configuration during a period of time
+     */
     private $_instance_state;
-    private $_end_time;
 
     /**
      * @see ETL\Ingestor\pdoIngestor::__construct()
@@ -23,15 +36,16 @@ class HostTableTransformIngestor extends pdoIngestor implements iAction
     {
         parent::__construct($options, $etlConfig, $logger);
 
-        $this->_end_time = $etlConfig->getVariableStore()->endDate ? date('Y-m-d H:i:s', strtotime($etlConfig->getVariableStore()->endDate)) : null;
-
-        $this->resetInstance();
+        $this->_instance_state = null;
     }
 
+    /**
+     * Create a new row and associate it with the current record on the staging table
+     * 
+     * @param $srcRecord the current row from the staging table being read
+     */
     private function initInstance($srcRecord)
     {
-        $default_end_time = isset($this->_end_time) ? $this->_end_time : $srcRecord['record_time'];
-
         $this->_instance_state = array(
             'host_id' => $srcRecord['host_id'],
             'node_id' => $srcRecord['node_id'],
@@ -42,12 +56,12 @@ class HostTableTransformIngestor extends pdoIngestor implements iAction
         );
     }
 
-    private function resetInstance()
-    {
-        $this->_instance_state = null;
-    }
-
-    private function updateInstance($srcRecord)
+    /**
+     * Update the end_time of the current instance_state to match with the current record
+     * 
+     * @param $srcRecord the current row from the staging table being read
+     */
+    private function updateInstance(array $srcRecord)
     {
         $this->_instance_state['end_time'] = $srcRecord['record_time'];
         $this->_instance_state['end_day_id'] = $srcRecord['record_day_id'];
@@ -55,12 +69,15 @@ class HostTableTransformIngestor extends pdoIngestor implements iAction
 
     /**
      * @see ETL\Ingestor\pdoIngestor::transform()
+     * 
+     * @return array The final instance_state if the hardware changes, 
+     * or an empty array otherwise
      */
     protected function transform(array $srcRecord, &$orderId)
     {
 
         // We want to just flush when we hit the dummy row
-        if ($srcRecord['record_day_id'] === 0) {
+        if ($srcRecord['host_id'] === 0) {
             if (isset($this->_instance_state)) {
                 return array($this->_instance_state);
             } else {
@@ -84,6 +101,13 @@ class HostTableTransformIngestor extends pdoIngestor implements iAction
         return $transformedRecord;
     }
 
+    /**
+     * Generates an SQL query which is used on the staging table (record_time_staging)
+     * to generate the source table which is iterated through. A dummy row of zeros is added
+     * at the end, and the table is sorted by host and time.
+     * 
+     * @return string the SQL query
+     */
     protected function getSourceQueryString()
     {
         $sql = parent::getSourceQueryString();
@@ -96,10 +120,5 @@ class HostTableTransformIngestor extends pdoIngestor implements iAction
         $sql = $sql . "\nUNION ALL\nSELECT " . implode(',', $unionValues) . "\nORDER BY host_id DESC, record_time";
 
         return $sql;
-    }
-
-    public function transformHelper(array $srcRecord)
-    {
-        return $this->transform($srcRecord, $orderId);
     }
 }
