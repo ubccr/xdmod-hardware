@@ -70,6 +70,12 @@ class HostTableTransformIngestor extends pdoIngestor implements iAction
     /**
      * @see ETL\Ingestor\pdoIngestor::transform()
      * 
+     * This function gets called on every row in the record_time_staging table.
+     * If the row represents a new hardware/host pairing, then a new instance will be created.
+     * Otherwise, the current instance will be updated.
+     * 
+     * @param $srcRecord The current row from the staging table
+     * 
      * @return array The final instance_state if the hardware changes, 
      * or an empty array otherwise
      */
@@ -85,6 +91,7 @@ class HostTableTransformIngestor extends pdoIngestor implements iAction
             }
         }
 
+        // Initially, the instance_state is null
         if ($this->_instance_state === null) {
             $this->initInstance($srcRecord);
         }
