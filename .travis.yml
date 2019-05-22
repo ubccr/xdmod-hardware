@@ -11,6 +11,7 @@ env:
     global:
         - NODE_VERSION=6
         - XDMOD_TEST_ARTIFACTS_MIRROR="$HOME/xdmod-test-artifacts.git"
+        - XDMOD_MAIN_BRANCH="xdmod8.5"
         - XDMOD_MODULE_DIR="hardware"
         - XDMOD_MODULE_NAME="Hardware"
 
