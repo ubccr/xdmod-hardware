@@ -44,7 +44,7 @@ class HostTableTransformIngestor extends pdoIngestor implements iAction
      * 
      * @param $srcRecord the current row from the staging table being read
      */
-    private function initInstance($srcRecord)
+    private function initInstance(array $srcRecord)
     {
         $this->_instance_state = array(
             'host_id' => $srcRecord['host_id'],
