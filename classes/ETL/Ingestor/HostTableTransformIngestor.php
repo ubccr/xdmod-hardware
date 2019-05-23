@@ -76,7 +76,7 @@ class HostTableTransformIngestor extends pdoIngestor implements iAction
      *
      * @param $srcRecord The current row from the staging table
      *
-     * @return array The final instance_state if the hardware changes, 
+     * @return array The final instance_state if the hardware changes,
      * or an empty array otherwise
      */
     protected function transform(array $srcRecord, &$orderId)
