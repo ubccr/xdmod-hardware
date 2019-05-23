@@ -11,12 +11,12 @@
                 "nullable": false
             },
             {
-                "name": "node_id",
+                "name": "hardware_id",
                 "type": "int(11)",
                 "nullable": false
             },
             {
-                "name": "record_time",
+                "name": "record_time_ts",
                 "type": "float(32)",
                 "nullable": false
             }
@@ -26,8 +26,8 @@
                 "name": "PRIMARY",
                 "columns": [
                     "host_id",
-                    "node_id",
-                    "record_time"
+                    "hardware_id",
+                    "record_time_ts"
                 ],
                 "type": "BTREE",
                 "is_unique": true
@@ -36,7 +36,7 @@
                 "name": "idx_host_id",
                 "columns": [
                     "host_id",
-                    "record_time"
+                    "record_time_ts"
                 ],
                 "type": "BTREE",
                 "is_unique": false

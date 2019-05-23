@@ -5,7 +5,7 @@
     "destination_record_map": {
         "host": {
             "host_id": "host_id",
-            "node_id": "node_id",
+            "hardware_id": "hardware_id",
             "start_time": "start_time",
             "end_time": "end_time",
             "start_day_id": "start_day_id",
@@ -15,9 +15,9 @@
     "source_query": {
         "records": {
             "host_id": "s.host_id",
-            "node_id": "s.node_id",
-            "record_time": "FROM_UNIXTIME(s.record_time)",
-            "record_day_id": "DATE_FORMAT(FROM_UNIXTIME(s.record_time), '%Y00%j')",
+            "hardware_id": "s.hardware_id",
+            "record_time": "FROM_UNIXTIME(s.record_time_ts)",
+            "record_day_id": "DATE_FORMAT(FROM_UNIXTIME(s.record_time_ts), '%Y00%j')",
             "start_time": -1,
             "end_time": -1,
             "start_day_id": -1,

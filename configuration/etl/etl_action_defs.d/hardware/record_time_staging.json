@@ -5,8 +5,8 @@
     "source_query": {
         "records": {
             "host_id": "h.id",
-            "node_id": "n.id",
-            "record_time": "s.record_time"
+            "hardware_id": "hw.id",
+            "record_time_ts": "s.record_time_ts"
         },
         "joins": [
             {
@@ -45,10 +45,10 @@
                 "on": "s.gpu_device_manufacturer = gpu.manufacturer AND s.gpu_device_name = gpu.name"
             },
             {
-                "name": "node",
+                "name": "hardware_types",
                 "schema": "${SOURCE_SCHEMA}",
-                "alias": "n",
-                "on": "ct.id = n.cpu_id AND bt.id = n.board_id AND st.id = n.system_id AND n.infiniband_device_count = s.ib_device_count AND ib.id = n.infiniband_id AND s.gpu_device_count = n.gpu_device_count AND n.gpu_device_id = gpu.id AND n.core_count = s.core_count AND n.memory_gb = CEILING(s.physmem / 1024.0)"
+                "alias": "hw",
+                "on": "ct.id = hw.cpu_id AND bt.id = hw.board_id AND st.id = hw.system_id AND hw.infiniband_device_count = s.ib_device_count AND ib.id = hw.infiniband_id AND s.gpu_device_count = hw.gpu_device_count AND hw.gpu_device_id = gpu.id AND hw.core_count = s.core_count AND hw.memory_gb = CEILING(s.physmem / 1024.0)"
             },
             {
                 "name": "hosts",
