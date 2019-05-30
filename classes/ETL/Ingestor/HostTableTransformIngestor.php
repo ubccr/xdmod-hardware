@@ -48,7 +48,7 @@ class HostTableTransformIngestor extends pdoIngestor implements iAction
     {
         $this->_instance_state = array(
             'host_id' => $srcRecord['host_id'],
-            'node_id' => $srcRecord['node_id'],
+            'hardware_id' => $srcRecord['hardware_id'],
             'start_time' => $srcRecord['record_time'],
             'start_day_id' => $srcRecord['record_day_id'],
             'end_time' => $srcRecord['record_time'],
@@ -98,8 +98,8 @@ class HostTableTransformIngestor extends pdoIngestor implements iAction
 
         $transformedRecord = array();
 
-        // If the host or the node changes, create a new instance
-        if (($this->_instance_state['node_id'] !== $srcRecord['node_id']) || ($this->_instance_state['host_id'] !== $srcRecord['host_id'])) {
+        // If the host or the hardware changes, create a new instance
+        if (($this->_instance_state['hardware_id'] !== $srcRecord['hardware_id']) || ($this->_instance_state['host_id'] !== $srcRecord['host_id'])) {
             $transformedRecord[] = $this->_instance_state;
             $this->initInstance($srcRecord);
         } else {

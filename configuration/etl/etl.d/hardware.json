@@ -48,9 +48,9 @@
             1062
         ]
     }, {
-        "name": "nodes",
-        "description": "Populate the node table",
-        "definition_file": "hardware/nodes.json"
+        "name": "hardware_types",
+        "description": "Populate the hardware types table",
+        "definition_file": "hardware/hardware_types.json"
     }, {
         "name": "record_time_staging",
         "description": "Populate the record_time_staging table",

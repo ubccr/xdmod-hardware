@@ -1,6 +1,6 @@
 {
     "table_definition": [{
-        "$ref": "${table_definition_dir}/hardware/node.json#/table_definition"
+        "$ref": "${table_definition_dir}/hardware/hardware_types.json#/table_definition"
     }],
     "source_query": {
         "records": {

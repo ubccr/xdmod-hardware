@@ -3,12 +3,12 @@ import json
 SECONDS_PER_DAY = 86400
 START_TIME = 1500000000
 
-def associate(host_num, node_num, num_days):
-    """Associate a host with a node (hardware configuration)
+def associate(host_num, hw_num, num_days):
+    """Associate a host with a hardware configuration
     for a certain amount of time"""
     end_time = currentTimeOf[host_num] + num_days*SECONDS_PER_DAY
-    for record_time in range(currentTimeOf[host_num], end_time, SECONDS_PER_DAY):
-        newRow = [hosts[host_num]] + nodes[node_num] + [record_time]
+    for record_time_ts in range(currentTimeOf[host_num], end_time, SECONDS_PER_DAY):
+        newRow = [hosts[host_num]] + hw_types[hw_num] + [record_time_ts]
         result.append(newRow)
     currentTimeOf[host_num] = end_time
 
@@ -36,7 +36,7 @@ result = [
         'gpu_device_count',
         'gpu_device_manufacturer',
         'gpu_device_name',
-        'record_time',
+        'record_time_ts',
     ]
 ]
 
@@ -49,7 +49,7 @@ currentTimeOf = []
 for host_num in range(len(hosts)):
     currentTimeOf.append(START_TIME)
 
-nodes = [
+hw_types = [
     [
         "INTEL",
         "Westmere EP",

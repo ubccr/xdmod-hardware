@@ -111,7 +111,7 @@
                 "nullable": false
             },
             {
-                "name": "record_time",
+                "name": "record_time_ts",
                 "type": "float(32)",
                 "nullable": false
             }

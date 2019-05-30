@@ -11,7 +11,7 @@
                 "nullable": false
             },
             {
-                "name": "node_id",
+                "name": "hardware_id",
                 "type": "int(11)",
                 "nullable": false
             },
@@ -41,7 +41,7 @@
                 "name": "PRIMARY",
                 "columns": [
                     "host_id",
-                    "node_id",
+                    "hardware_id",
                     "start_day_id",
                     "end_day_id"
                 ],
@@ -49,9 +49,9 @@
                 "is_unique": true
             },
             {
-                "name": "idx_node_id",
+                "name": "idx_hardware_id",
                 "columns": [
-                    "node_id"
+                    "hardware_id"
                 ],
                 "type": "BTREE",
                 "is_unique": false
@@ -60,7 +60,7 @@
                 "name": "idx_time",
                 "columns": [
                     "host_id",
-                    "node_id",
+                    "hardware_id",
                     "start_day_id"
                 ],
                 "type": "BTREE",
@@ -69,11 +69,11 @@
         ],
         "foreign_key_constraints": [
             {
-                "name": "fk_node_id",
+                "name": "fk_hardware_id",
                 "columns": [
-                    "node_id"
+                    "hardware_id"
                 ],
-                "referenced_table": "node",
+                "referenced_table": "hardware_types",
                 "referenced_columns": [
                     "id"
                 ]
