@@ -71,7 +71,17 @@
                 "nullable": false
             },
             {
+                "name": "numa_node_count",
+                "type": "int(11)",
+                "nullable": false
+            },
+            {
                 "name": "disk_count",
+                "type": "int(11)",
+                "nullable": false
+            },
+            {
+                "name": "ethernet_count",
                 "type": "int(11)",
                 "nullable": false
             },
