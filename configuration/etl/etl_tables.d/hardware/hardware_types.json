@@ -42,19 +42,19 @@
                 "name": "numa_node_count",
                 "type": "int(11)",
                 "nullable": false,
-                "comment": "The amount of NUMA nodes"
+                "comment": "The number of NUMA nodes"
             },
             {
                 "name": "disk_count",
                 "type": "int(11)",
                 "nullable": false,
-                "comment": "The amount of disks"
+                "comment": "The number of disks"
             },
             {
                 "name": "ethernet_count",
                 "type": "int(11)",
                 "nullable": false,
-                "comment": "The amount of ethernet devices"
+                "comment": "The number of ethernet devices"
             },
             {
                 "name": "infiniband_device_count",
