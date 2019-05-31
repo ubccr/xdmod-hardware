@@ -38,7 +38,7 @@ result = [
         'gpu_device_count',
         'gpu_device_manufacturer',
         'gpu_device_name',
-        'record_time_ts'
+        'record_time_ts',
     ]
 ]
 
