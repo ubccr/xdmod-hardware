@@ -39,6 +39,24 @@
                 "comment": "The amount of physical memory on the node in GiB"
             },
             {
+                "name": "numa_node_count",
+                "type": "int(11)",
+                "nullable": false,
+                "comment": "The number of NUMA nodes"
+            },
+            {
+                "name": "disk_count",
+                "type": "int(11)",
+                "nullable": false,
+                "comment": "The number of disks"
+            },
+            {
+                "name": "ethernet_count",
+                "type": "int(11)",
+                "nullable": false,
+                "comment": "The number of ethernet devices"
+            },
+            {
                 "name": "infiniband_device_count",
                 "type": "int(11)",
                 "nullable": false,
@@ -78,6 +96,9 @@
                     "cpu_id",
                     "core_count",
                     "memory_gb",
+                    "numa_node_count",
+                    "disk_count",
+                    "ethernet_count",
                     "infiniband_device_count",
                     "infiniband_id",
                     "gpu_device_count",

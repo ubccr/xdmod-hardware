@@ -33,7 +33,8 @@
             {
                 "name": "core_count",
                 "type": "int(11)",
-                "nullable": false
+                "nullable": false,
+                "comment": "The number of CPU hardware cores"
             },
             {
                 "name": "board_manufacturer",
@@ -68,17 +69,32 @@
             {
                 "name": "physmem",
                 "type": "int(11)",
-                "nullable": false
+                "nullable": false,
+                "comment": "The amount of physical memory on the node in GiB"
+            },
+            {
+                "name": "numa_node_count",
+                "type": "int(11)",
+                "nullable": false,
+                "comment": "The number of NUMA nodes"
             },
             {
                 "name": "disk_count",
                 "type": "int(11)",
-                "nullable": false
+                "nullable": false,
+                "comment": "The number of disks"
+            },
+            {
+                "name": "ethernet_count",
+                "type": "int(11)",
+                "nullable": false,
+                "comment": "The number of ethernet devices"
             },
             {
                 "name": "ib_device_count",
                 "type": "int(11)",
-                "nullable": false
+                "nullable": false,
+                "comment": "The number of InfiniBand cards present"
             },
             {
                 "name": "ib_device",
@@ -98,7 +114,8 @@
             {
                 "name": "gpu_device_count",
                 "type": "int(11)",
-                "nullable": false
+                "nullable": false,
+                "comment": "The number of GPU cards present"
             },
             {
                 "name": "gpu_device_manufacturer",
