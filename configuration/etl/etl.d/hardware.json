@@ -37,7 +37,7 @@
             "source": {
                 "type": "jsonfile",
                 "name": "Resources configuration",
-                "path": "hardware/node_info.json"
+                "path": "hardware/hardware_staging.json"
             }
         }
     }, {

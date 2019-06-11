@@ -131,6 +131,11 @@
                 "name": "record_time_ts",
                 "type": "float(32)",
                 "nullable": false
+            },
+            {
+                "name": "resource_name",
+                "type": "char(64)",
+                "nullable": false
             }
         ]
     }

@@ -48,7 +48,7 @@
                 "name": "hardware_types",
                 "schema": "${SOURCE_SCHEMA}",
                 "alias": "hw",
-                "on": "ct.id = hw.cpu_id AND bt.id = hw.board_id AND st.id = hw.system_id AND hw.infiniband_device_count = s.ib_device_count AND ib.id = hw.infiniband_id AND s.gpu_device_count = hw.gpu_device_count AND hw.gpu_device_id = gpu.id AND hw.core_count = s.core_count AND hw.memory_gb = CEILING(s.physmem / 1024.0)"
+                "on": "ct.id = hw.cpu_id AND bt.id = hw.board_id AND st.id = hw.system_id AND hw.infiniband_device_count = s.ib_device_count AND ib.id = hw.infiniband_id AND s.gpu_device_count = hw.gpu_device_count AND hw.gpu_device_id = gpu.id AND hw.core_count = s.core_count AND hw.memory_gb = CEILING(s.physmem / 1024.0) AND hw.numa_node_count = s.numa_node_count AND hw.disk_count = s.disk_count AND hw.ethernet_count = s.ethernet_count"
             },
             {
                 "name": "hosts",
