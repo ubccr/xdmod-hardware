@@ -66,7 +66,7 @@ def main():
             associate(hostname, hw_num, num_days)
 
     with open(outputFilename, 'w') as outFile:
-            outFile.write(json.dumps(result, indent=4, separators=(',', ': ')))
+        outFile.write(json.dumps(result, indent=4, separators=(',', ': ')))
 
 if __name__ == '__main__':
     main()
