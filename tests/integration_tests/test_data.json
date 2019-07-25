@@ -1,5 +1,5 @@
 {
-    "start_date": "2016-01-11",
+    "start_date": "2016-01-01",
 
     "column_names": [
         "hostname",
@@ -29,55 +29,8 @@
         "resource_name"
     ],
 
-    "hw_types": [
-        [
-            "INTEL",
-            "Westmere EP",
-            "Intel(R) Xeon(R) CPU E5645",
-            "2.40GHz",
-            12,
-            "NA",
-            "NA",
-            "NA",
-            "Dell",
-            "C6100",
-            "NA",
-            48127,
-            2,
-            2,
-            3,
-            1,
-            "qib0",
-            "InfiniPath_QLE7340",
-            1,
-            0,
-            "NA",
-            "NA"
-        ], [
-            "AMD",
-            "Magny-Cours",
-            "AMD Opteron(tm) Processor 6132 HE",
-            "2.60GHz",
-            16,
-            "NA",
-            "NA",
-            "NA",
-            "HP",
-            "ProLiant SL230s Gen8",
-            "NA",
-            64223,
-            1,
-            1,
-            4,
-            1,
-            "mlx4_0",
-            "MT4099",
-            2,
-            0,
-            "NA",
-            "NA"
-        ],
-        [
+    "hw_types": {
+        "has_ib": [
             "DUDEK",
             "Project Testing",
             "Max Dudek cool CPU",
@@ -94,52 +47,70 @@
             1,
             4,
             1,
-            "mlx4_0",
-            "MT4099",
+            "Dudek_band",
+            "1337_420",
             2,
             0,
             "NA",
             "NA"
+        ],
+        "missing_ib": [
+            "DUDEK",
+            "Project Testing",
+            "Max Dudek cool CPU",
+            "1.60THz",
+            16,
+            "NA",
+            "NA",
+            "NA",
+            "HP",
+            "ProLiant SL230s Gen8",
+            "NA",
+            69420,
+            1,
+            1,
+            4,
+            0,
+            "NA",
+            "NA",
+            -1,
+            0,
+            "NA",
+            "NA"
         ]
-    ],
+    },
 
     "associations": {
         "cpn-k10-06-02": [
             {
-                "hw_num": 0,
-                "num_days": 7
+                "hw_type": "has_ib",
+                "num_days": 4
             },
             {
-                "hw_num": 1,
-                "num_days": 5
+                "hw_type": "missing_ib",
+                "num_days": 50
             },
             {
-                "hw_num": -1,
-                "num_days": 10
+                "hw_type": "has_ib",
+                "num_days": 50
             },
             {
-                "hw_num": 0,
-                "num_days": 20
+                "hw_type": "missing_ib",
+                "num_days": 4
+            },
+            {
+                "hw_type": "has_ib",
+                "num_days": 50
+            },
+            {
+                "hw_type": "missing_ib",
+                "num_days": 4
             }
         ],
-        "cpn-m28-18-02": [
+        "cpn-k10-06-01": [
             {
-                "hw_num": 1,
-                "num_days": 2
-            },
-            {
-                "hw_num": 0,
-                "num_days": 10
-            },
-            {
-                "hw_num": 1,
-                "num_days": 33
-            }
-        ],
-        "cpn-d07-10-01": [
-            {
-                "hw_num": 2,
-                "num_days": 13
+                "hw_type": "has_ib",
+                "num_days": 162
             }
         ]
     }

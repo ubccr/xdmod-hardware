@@ -10,17 +10,19 @@ HW_TYPES = []
 result = []
 currentTimeOf = {}
 
-def associate(hostname, hw_num, num_days):
+def associate(hostname, hw_type, num_days):
     """Associate a host with a hardware configuration
     for a certain amount of time
-    If hw_num == -1, then associate the host with nothing
+    If hw_type == -1, then associate the host with nothing
     (i.e. simulate missing data for that number of days)"""
     global HW_TYPES
     global result
     end_time = currentTimeOf[hostname] + num_days*SECONDS_PER_DAY
-    if hw_num != -1:
+    if hw_type != -1:
+        if hw_type not in HW_TYPES:
+            raise KeyError('Unknown hw_type %d specified in config for host %s' % (hw_type, hostname))
         for record_time_ts in range(currentTimeOf[hostname], end_time, SECONDS_PER_DAY):
-            newRow = [hostname] + HW_TYPES[hw_num] + [record_time_ts] + ['test_resource']
+            newRow = [hostname] + HW_TYPES[hw_type] + [record_time_ts] + ['test_resource']
             result.append(newRow)
     currentTimeOf[hostname] = end_time
 
@@ -59,11 +61,9 @@ def main():
     for hostname in ASSOCIATIONS:
         currentTimeOf[hostname] = START_TIME
         for association in ASSOCIATIONS[hostname]:
-            hw_num = association['hw_num']
+            hw_type = association['hw_type']
             num_days = association['num_days']
-            if hw_num >= len(HW_TYPES) or hw_num < -1:
-                raise IndexError('hw_num %d in config for host %s is illegal, %d hw_types were given in config' % (hw_num, hostname, len(HW_TYPES)))
-            associate(hostname, hw_num, num_days)
+            associate(hostname, hw_type, num_days)
 
     with open(outputFilename, 'w') as outFile:
         outFile.write(json.dumps(result, indent=4, separators=(',', ': ')))
