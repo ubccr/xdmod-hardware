@@ -10,6 +10,34 @@ HW_TYPES = []
 result = []
 currentTimeOf = {}
 
+STAGING_COLUMNS = [
+    "hostname",
+    "manufacturer",
+    "codename",
+    "model_name",
+    "clock_speed",
+    "core_count",
+    "board_manufacturer",
+    "board_name",
+    "board_version",
+    "system_manufacturer",
+    "system_name",
+    "system_version",
+    "physmem",
+    "numa_node_count",
+    "disk_count",
+    "ethernet_count",
+    "ib_device_count",
+    "ib_device",
+    "ib_ca_type",
+    "ib_ports",
+    "gpu_device_count",
+    "gpu_device_manufacturer",
+    "gpu_device_name",
+    "record_time_ts",
+    "resource_name",
+]
+
 def associate(hostname, hw_type, num_days):
     """Associate a host with a hardware configuration
     for a certain amount of time
@@ -30,7 +58,7 @@ def getOptions():
     """ process comandline options """
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('-c', '--config', help='Specify the path to the configuration directory', required=True)
+    parser.add_argument('-c', '--config', help='Specify the path to the configuration file', required=True)
 
     parser.add_argument('-o', '--output', default='hardware_staging_test.json', help='Specify the name and path of the output json file')
 
@@ -45,8 +73,7 @@ def main():
 
     outputFilename = opts['output']
 
-    confpath = opts['config']
-    conffile = os.path.join(confpath, "test_data.json")
+    conffile = os.path.abspath(opts['config'])
     with open(conffile, "r") as conffp:
         try:
             config = json.load(conffp)
@@ -54,7 +81,7 @@ def main():
             raise Exception('Syntax error in %s.\n%s' % (conffile, str(exc)))
 
     START_TIME = int(time.mktime(datetime.datetime.strptime(config['start_date'], "%Y-%m-%d").timetuple()))
-    result.append(config['column_names'])
+    result.append(STAGING_COLUMNS)
     HW_TYPES = config['hw_types']
     ASSOCIATIONS = config['associations']
 

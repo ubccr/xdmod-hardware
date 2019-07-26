@@ -1,34 +1,6 @@
 {
     "start_date": "2016-01-01",
 
-    "column_names": [
-        "hostname",
-        "manufacturer",
-        "codename",
-        "model_name",
-        "clock_speed",
-        "core_count",
-        "board_manufacturer",
-        "board_name",
-        "board_version",
-        "system_manufacturer",
-        "system_name",
-        "system_version",
-        "physmem",
-        "numa_node_count",
-        "disk_count",
-        "ethernet_count",
-        "ib_device_count",
-        "ib_device",
-        "ib_ca_type",
-        "ib_ports",
-        "gpu_device_count",
-        "gpu_device_manufacturer",
-        "gpu_device_name",
-        "record_time_ts",
-        "resource_name"
-    ],
-
     "hw_types": {
         "has_ib": [
             "DUDEK",
