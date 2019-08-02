@@ -56,7 +56,7 @@
         "name": "hardware_types",
         "description": "Populate the hardware types table",
         "definition_file": "hardware/hardware_types.json"
-    }, {   
+    }, {
         "name": "truncate_most_recent",
         "description": "Drop all rows in the database newer than the oldest record in the ingested data",
         "namespace": "ETL\\Maintenance",

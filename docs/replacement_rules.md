@@ -2,14 +2,14 @@
 title: Replacement Rules
 ---
 
-The file `replacement_rules.json` describes rules to selectively edit 
-the output of `get_hardware_info.py`. This script generates a json file 
+The file `replacement_rules.json` describes rules to selectively edit
+the output of `get_hardware_info.py`. This script generates a json file
 representing the staging table for the hardware xdmod database. Each
 rule specified in `replacement_rules.json` can alter the data in a certain column,
 to either make the data more consistent, add missing data, or fix data that is incorrect.
 
 `replacement_rules.json` consists of a list of rules which are applied to every row in the
-output table, in order. A rule consists of two properties: `conditions`, which must be met 
+output table, in order. A rule consists of two properties: `conditions`, which must be met
 in order for the rule to be applied, and `replacements`, which describe exactly what data to replace.
 If the `conditions` property is missing, then the replacement will be applied to every row.
 
@@ -32,14 +32,14 @@ Here is a simple example of a rule:
 }
 ```
 
-Note that this rule does not have any conditions, and so it will be applied to every row. 
-The effect of this rule is that rows with a manufacturer of `GenuineIntel` will be 
+Note that this rule does not have any conditions, and so it will be applied to every row.
+The effect of this rule is that rows with a manufacturer of `GenuineIntel` will be
 changed to `INTEL`, and likewise `AuthenticAMD` will be changed to `AMD`.
 
-The `replacements` property contains a list of replacements to apply. Each replacement 
+The `replacements` property contains a list of replacements to apply. Each replacement
 has up to three properties:
 - `column`: the entry in the row that should be changed by the replacement
-- `pattern`: a regex search pattern to use for replacement. If absent, then the entire entry will be replaced.  
+- `pattern`: a regex search pattern to use for replacement. If absent, then the entire entry will be replaced.
   - Note that if specified, replacement will only occur if a pattern match is found in the entry
 - `repl`: the value to replace with
 
