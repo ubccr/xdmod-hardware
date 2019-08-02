@@ -58,7 +58,7 @@
         "definition_file": "hardware/hardware_types.json"
     }, {   
         "name": "truncate_most_recent",
-        "description": "Drop all rows in the database older than the oldest record in the ingested data",
+        "description": "Drop all rows in the database newer than the oldest record in the ingested data",
         "namespace": "ETL\\Maintenance",
         "options_class": "MaintenanceOptions",
         "class": "ExecuteSql",
