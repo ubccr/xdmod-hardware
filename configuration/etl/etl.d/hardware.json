@@ -35,9 +35,14 @@
         "truncate_destination": true,
         "endpoints": {
             "source": {
-                "type": "jsonfile",
+                "type": "directoryscanner",
                 "name": "Resources configuration",
-                "path": "hardware/hardware_staging.json"
+                "path": "hardware",
+                "file_pattern": "/.*\\.json/",
+                "handler": {
+                    "type": "jsonfile",
+                    "name": "Resources configuration"
+                }
             }
         }
     }, {
@@ -51,6 +56,15 @@
         "name": "hardware_types",
         "description": "Populate the hardware types table",
         "definition_file": "hardware/hardware_types.json"
+    }, {
+        "name": "truncate_most_recent",
+        "description": "Drop all rows in the database newer than the oldest record in the ingested data",
+        "namespace": "ETL\\Maintenance",
+        "options_class": "MaintenanceOptions",
+        "class": "ExecuteSql",
+        "sql_file_list": [
+            "truncate_most_recent.sql"
+        ]
     }, {
         "name": "record_time_staging",
         "description": "Populate the record_time_staging table",

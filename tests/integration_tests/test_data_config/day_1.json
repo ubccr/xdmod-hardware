@@ -1,0 +1,69 @@
+{
+    "start_date": "2016-06-11",
+
+    "hw_types": {
+        "has_ib": [
+            "DUDEK",
+            "Project Testing",
+            "Max Dudek CPU",
+            "1.60THz",
+            16,
+            "NA",
+            "NA",
+            "NA",
+            "HP",
+            "ProLiant SL230s Gen8",
+            "NA",
+            48,
+            1,
+            1,
+            4,
+            1,
+            "Dudek_band",
+            "2.0",
+            2,
+            0,
+            "NA",
+            "NA"
+        ],
+        "missing_ib": [
+            "DUDEK",
+            "Project Testing",
+            "Max Dudek CPU",
+            "1.60THz",
+            16,
+            "NA",
+            "NA",
+            "NA",
+            "HP",
+            "ProLiant SL230s Gen8",
+            "NA",
+            48,
+            1,
+            1,
+            4,
+            0,
+            "NA",
+            "NA",
+            -1,
+            0,
+            "NA",
+            "NA"
+        ]
+    },
+
+    "associations": {
+        "cpn-k10-06-02": [
+            {
+                "hw_type": "has_ib",
+                "num_days": 1
+            }
+        ],
+        "cpn-k10-06-01": [
+            {
+                "hw_type": "has_ib",
+                "num_days": 1
+            }
+        ]
+    }
+}
